@@ -8,8 +8,6 @@ public class Ghost : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] NavMeshAgent agent;
 
-    public float speed;
-
     //Timer
     public float scatterBaseTime;
     public float chaseBaseTime;
@@ -39,7 +37,7 @@ public class Ghost : MonoBehaviour
                 else
                 {
                     state = ChaseState.Scatter;
-                    chaseTime = scatterBaseTime;
+                    scatterTime = scatterBaseTime;
                 }
                 break;
             case ChaseState.Scatter:
@@ -61,11 +59,13 @@ public class Ghost : MonoBehaviour
 
     public virtual void Scatter()
     {
-
+        Debug.Log("Scatter");
+        agent.SetDestination(transform.position);
     }
 
     public virtual void Chase()
     {
+        Debug.Log("Chasing");
         agent.SetDestination(target.transform.position);
     }
 }
