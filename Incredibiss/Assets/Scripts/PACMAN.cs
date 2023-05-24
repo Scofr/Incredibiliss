@@ -9,6 +9,9 @@ public class PACMAN : MonoBehaviour
     public float speed = 5f;
 
     public Rigidbody rb;
+    public Collision col;
+    public Animator manimator;
+      
 
     public KeyCode Haut;
     public KeyCode Bas;
@@ -70,6 +73,17 @@ public class PACMAN : MonoBehaviour
             Debug.Log("SEXO2");
         }
         
+    }
+
+     void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Pac_gomme")
+        {
+            Destroy(col.gameObject);  
+            manimator.SetTrigger("Infirmus");
+            canMove = false;
+            
+        }
     }
    
 
